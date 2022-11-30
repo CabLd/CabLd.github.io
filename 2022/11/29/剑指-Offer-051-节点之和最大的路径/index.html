@@ -8,13 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="[传送门](剑指 Offer II 051. 节点之和最大的路径 - 力扣（LeetCode）) Des 从任意一点出发，不允许重复的最长路径。 Solution 选择当前出发结点的值加上左子树，右子树的最大值（从叶子到该节点）。 Code 12345678910111213141516171819202122232425262728&#x2F;** * Definition for a binary tr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="剑指 Offer II 051. 节点之和最大的路径">
-<meta property="og:url" content="http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/index.html">
+<meta property="og:title" content="剑指 Offer 051. 节点之和最大的路径">
+<meta property="og:url" content="http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/index.html">
 <meta property="og:site_name" content="qinlin">
 <meta property="og:description" content="[传送门](剑指 Offer II 051. 节点之和最大的路径 - 力扣（LeetCode）) Des 从任意一点出发，不允许重复的最长路径。 Solution 选择当前出发结点的值加上左子树，右子树的最大值（从叶子到该节点）。 Code 12345678910111213141516171819202122232425262728&#x2F;** * Definition for a binary tr">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-11-29T06:07:41.000Z">
-<meta property="article:modified_time" content="2022-11-29T06:22:23.752Z">
+<meta property="article:modified_time" content="2022-11-30T06:33:47.529Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
@@ -37,7 +37,7 @@
       
     
     <!-- title -->
-    <title>剑指 Offer II 051. 节点之和最大的路径</title>
+    <title>剑指 Offer 051. 节点之和最大的路径</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
@@ -91,17 +91,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/&text=剑指 Offer II 051. 节点之和最大的路径"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/&title=剑指 Offer II 051. 节点之和最大的路径"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/&is_video=false&description=剑指 Offer II 051. 节点之和最大的路径"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=剑指 Offer II 051. 节点之和最大的路径&body=Check out this article: http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/&title=剑指 Offer II 051. 节点之和最大的路径"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/&title=剑指 Offer II 051. 节点之和最大的路径"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/&title=剑指 Offer II 051. 节点之和最大的路径"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/&title=剑指 Offer II 051. 节点之和最大的路径"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/&name=剑指 Offer II 051. 节点之和最大的路径&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/&t=剑指 Offer II 051. 节点之和最大的路径"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/&text=剑指 Offer 051. 节点之和最大的路径"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/&title=剑指 Offer 051. 节点之和最大的路径"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/&is_video=false&description=剑指 Offer 051. 节点之和最大的路径"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=剑指 Offer 051. 节点之和最大的路径&body=Check out this article: http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/&title=剑指 Offer 051. 节点之和最大的路径"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/&title=剑指 Offer 051. 节点之和最大的路径"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/&title=剑指 Offer 051. 节点之和最大的路径"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/&title=剑指 Offer 051. 节点之和最大的路径"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/&name=剑指 Offer 051. 节点之和最大的路径&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/&t=剑指 Offer 051. 节点之和最大的路径"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -118,7 +118,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        剑指 Offer II 051. 节点之和最大的路径
+        剑指 Offer 051. 节点之和最大的路径
     </h1>
 
 
@@ -188,17 +188,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/&text=剑指 Offer II 051. 节点之和最大的路径"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/&title=剑指 Offer II 051. 节点之和最大的路径"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/&is_video=false&description=剑指 Offer II 051. 节点之和最大的路径"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=剑指 Offer II 051. 节点之和最大的路径&body=Check out this article: http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/&title=剑指 Offer II 051. 节点之和最大的路径"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/&title=剑指 Offer II 051. 节点之和最大的路径"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/&title=剑指 Offer II 051. 节点之和最大的路径"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/&title=剑指 Offer II 051. 节点之和最大的路径"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/&name=剑指 Offer II 051. 节点之和最大的路径&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/11/29/%E6%A0%91%E4%B8%8A%E4%BB%BB%E6%84%8F%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E5%92%8C/&t=剑指 Offer II 051. 节点之和最大的路径"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/&text=剑指 Offer 051. 节点之和最大的路径"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/&title=剑指 Offer 051. 节点之和最大的路径"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/&is_video=false&description=剑指 Offer 051. 节点之和最大的路径"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=剑指 Offer 051. 节点之和最大的路径&body=Check out this article: http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/&title=剑指 Offer 051. 节点之和最大的路径"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/&title=剑指 Offer 051. 节点之和最大的路径"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/&title=剑指 Offer 051. 节点之和最大的路径"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/&title=剑指 Offer 051. 节点之和最大的路径"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/&name=剑指 Offer 051. 节点之和最大的路径&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/11/29/%E5%89%91%E6%8C%87-Offer-051-%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E8%B7%AF%E5%BE%84/&t=剑指 Offer 051. 节点之和最大的路径"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
