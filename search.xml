@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>剑指 Offer 09. 用两个栈实现队列</title>
+      <link href="/2022/11/30/%E5%89%91%E6%8C%87-Offer-09-%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/"/>
+      <url>/2022/11/30/%E5%89%91%E6%8C%87-Offer-09-%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/</url>
+      
+        <content type="html"><![CDATA[<p>[传送门](<a href="https://leetcode.cn/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/">剑指 Offer 09. 用两个栈实现队列 - 力扣（LeetCode）</a>)</p><p><strong>Solution</strong></p><p>使用数组模拟，定义以下行为：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *head 队头 tail队尾 </span></span><br><span class="line"><span class="comment"> *head &lt;= tail 队列不为空</span></span><br><span class="line"><span class="comment"> *head++ 出队</span></span><br><span class="line"><span class="comment"> *q[++tail] = x 入队</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">int</span> head, tail, q[N], idx[N];</span><br><span class="line">head = <span class="number">1</span>, tail = <span class="number">0</span>;</span><br></pre></td></tr></table></figure><p><strong>Code</strong></p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CQueue</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"><span class="type">int</span> hh, tt;</span><br><span class="line"><span class="type">int</span> q[<span class="number">10010</span>];</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">CQueue</span>() &#123;</span><br><span class="line">        hh = <span class="number">1</span>, tt = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">appendTail</span><span class="params">(<span class="type">int</span> value)</span> </span>&#123;</span><br><span class="line">        q[++tt] = value;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">deleteHead</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(hh &gt; tt) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">return</span> q[hh++];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your CQueue object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * CQueue* obj = new CQueue();</span></span><br><span class="line"><span class="comment"> * obj-&gt;appendTail(value);</span></span><br><span class="line"><span class="comment"> * int param_2 = obj-&gt;deleteHead();</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>stl-map,set的自定义排序</title>
       <link href="/2022/11/30/stl-map-set%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%92%E5%BA%8F/"/>
       <url>/2022/11/30/stl-map-set%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%92%E5%BA%8F/</url>
