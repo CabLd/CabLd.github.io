@@ -8,7 +8,7 @@
       <link href="/2022/12/02/MVC%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F/"/>
       <url>/2022/12/02/MVC%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F/</url>
       
-        <content type="html"><![CDATA[<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>几乎所有B&#x2F;S项目都是使用的结构，将前后端进行分离。</p><p>Model：模型层（实体类），业务等。</p><p>View：视图层，展示数据的地方。</p><p>Controller：控制层，作为前面两层的中介，并不做数据操作，调用模型完成操作，放给view展示。</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>几乎所有B&#x2F;S项目都是使用的结构，将前后端进行分离。</p><p>Model：模型层（实体类），业务等。</p><p>View：视图层，展示数据的地方。</p><p>Controller：控制层，作为前面两层的中介，并不做数据操作，调用模型完成操作，放给view展示。</p><p><img src="E:\hexo\source\images\mvc_structure__Slides.png"></p>]]></content>
       
       
       
