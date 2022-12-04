@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>ziziOJ系统用例</title>
+      <link href="/2022/12/04/ziziOJ%E7%BB%93%E6%9E%84/"/>
+      <url>/2022/12/04/ziziOJ%E7%BB%93%E6%9E%84/</url>
+      
+        <content type="html"><![CDATA[<h2 id="系统概述"><a href="#系统概述" class="headerlink" title="系统概述"></a>系统概述</h2><p>ziziOJ是一个共享题目平台，用户可以上传自己的优质的题目：（题面加测评数据），经过管理员审核后可展示在题库，用户也可以下载别人的优质的题目。</p><h2 id="管理员"><a href="#管理员" class="headerlink" title="管理员"></a>管理员</h2><p>登录</p><p>注销</p><p>题目（增、删、查、改、下载）</p><p>用户（增、删、查、改）</p><p>公告（查，增）</p><h2 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h2><p>登录</p><p>注册</p><p>注销</p><p>题目（增、删、查、改、下载）</p><p>个人信息（查、改）</p><p>公告（查）</p><p>ps：题目的增加，由管理员审核才能展示在主页 ，删除直接设置 vis &#x3D; false</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> ziziOJ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MVC开发模式</title>
       <link href="/2022/12/02/MVC%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F/"/>
       <url>/2022/12/02/MVC%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F/</url>
