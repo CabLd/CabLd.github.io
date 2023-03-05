@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>构造有向无环图 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="[传送门](3696. 构造有向无环图 - AcWing题库) Des 给出一个图，不保证联通，一些边是无向边，一些是有向边，让你把它变成一个DAG，输出方案，如果不行输出NO Solution 从已知的信息出发，对于这种构造题，首先特判掉一些情况，我们肯定要先判断已有的有向边构成的图，能否进行拓扑排序，如果有向边都不能拓扑，说明不行，那么构造无向边其实很明显了，根本拓扑出来的序列，存一个等级，等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="构造有向无环图">
+<meta property="og:url" content="http://example.com/2023/03/05/%E6%9E%84%E9%80%A0%E6%9C%89%E5%90%91%E6%97%A0%E7%8E%AF%E5%9B%BE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="[传送门](3696. 构造有向无环图 - AcWing题库) Des 给出一个图，不保证联通，一些边是无向边，一些是有向边，让你把它变成一个DAG，输出方案，如果不行输出NO Solution 从已知的信息出发，对于这种构造题，首先特判掉一些情况，我们肯定要先判断已有的有向边构成的图，能否进行拓扑排序，如果有向边都不能拓扑，说明不行，那么构造无向边其实很明显了，根本拓扑出来的序列，存一个等级，等">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-03-05T01:29:33.000Z">
+<meta property="article:modified_time" content="2023-03-05T01:35:19.418Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="图论">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-构造有向无环图" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/05/%E6%9E%84%E9%80%A0%E6%9C%89%E5%90%91%E6%97%A0%E7%8E%AF%E5%9B%BE/" class="article-date">
+  <time class="dt-published" datetime="2023-03-05T01:29:33.000Z" itemprop="datePublished">2023-03-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      构造有向无环图
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>[传送门](<a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/3699/">3696. 构造有向无环图 - AcWing题库</a>)</p>
+<p><strong>Des</strong></p>
+<p>给出一个图，不保证联通，一些边是无向边，一些是有向边，让你把它变成一个DAG，输出方案，如果不行输出NO</p>
+<p><strong>Solution</strong></p>
+<p>从已知的信息出发，对于这种构造题，首先特判掉一些情况，我们肯定要先判断已有的有向边构成的图，能否进行拓扑排序，如果有向边都不能拓扑，说明不行，那么构造无向边其实很明显了，根本拓扑出来的序列，存一个等级，等级低的点向等级高的边拉边。</p>
+<p><strong>Code</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">2e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> cnt, head[N];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">E</span> &#123;</span><br><span class="line">    <span class="type">int</span> to, nex;</span><br><span class="line">&#125;e[N &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> v)</span> </span>&#123;</span><br><span class="line">    e[++cnt].nex = head[u], e[cnt].to = v, head[u] = cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> n, m, inc[N], d[N], idx, s[N];</span><br><span class="line">pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; p[N &lt;&lt; <span class="number">1</span>];</span><br><span class="line">vector&lt;pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt; &gt; v; </span><br><span class="line"><span class="type">int</span> ct;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">    <span class="comment">//for(int i = 1; i &lt;= n; ++i) cout &lt;&lt; inc[i] &lt;&lt; &quot; \n&quot;[i == n];</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span>(inc[i] == <span class="number">0</span>) &#123;</span><br><span class="line">            q.<span class="built_in">push</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(q.<span class="built_in">size</span>())&#123;</span><br><span class="line">        <span class="type">int</span> u = q.<span class="built_in">front</span>();</span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line">        d[++idx] = u;</span><br><span class="line">        s[u] = idx;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = head[u]; i; i = e[i].nex) &#123;</span><br><span class="line">            inc[e[i].to]--;</span><br><span class="line">            <span class="keyword">if</span>(inc[e[i].to] == <span class="number">0</span>) q.<span class="built_in">push</span>(e[i].to);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="comment">//init</span></span><br><span class="line">    v.<span class="built_in">clear</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) head[i] = <span class="number">0</span>;</span><br><span class="line">    cnt = ct = idx = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) d[i] = inc[i] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> op, x, y;</span><br><span class="line">    <span class="keyword">while</span>(m-- &amp;&amp; cin &gt;&gt; op &gt;&gt; x &gt;&gt; y) &#123;</span><br><span class="line">        <span class="keyword">if</span>(op == <span class="number">0</span>) p[++ct] = &#123;x, y&#125;;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            v.<span class="built_in">push_back</span>(&#123;x, y&#125;);</span><br><span class="line">            <span class="built_in">add</span>(x, y);</span><br><span class="line">            inc[y]++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">top</span>();</span><br><span class="line">    <span class="keyword">if</span>(idx != n) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;NO\n&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;YES\n&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= ct; ++i) &#123;</span><br><span class="line">        <span class="type">int</span> xx = p[i].first, yy = p[i].second;</span><br><span class="line">        <span class="comment">//cout &lt;&lt; xx &lt;&lt; &quot; &quot; &lt;&lt; yy &lt;&lt; &quot;\n&quot;;</span></span><br><span class="line">        <span class="comment">//cout &lt;&lt; d[xx] &lt;&lt; &quot; &quot; &lt;&lt; d[yy] &lt;&lt; &quot; dd\n&quot;;</span></span><br><span class="line">        <span class="keyword">if</span>(s[xx] &lt; s[yy]) cout &lt;&lt; xx &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; yy &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">        <span class="keyword">else</span> cout &lt;&lt; yy &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; xx &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> c : v) &#123;</span><br><span class="line">        cout &lt;&lt; c.first &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; c.second &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>), cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="type">int</span> t;</span><br><span class="line">    cin &gt;&gt; t;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= t; ++i) <span class="built_in">solve</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/05/%E6%9E%84%E9%80%A0%E6%9C%89%E5%90%91%E6%97%A0%E7%8E%AF%E5%9B%BE/" data-id="cleuq1sli0000hku9c3kjf70d" data-title="构造有向无环图" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag">图论</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/03/05/abc292/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">abc292</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/atcoder/" rel="tag">atcoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag">图论</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/atcoder/" style="font-size: 10px;">atcoder</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 20px;">图论</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/03/05/%E6%9E%84%E9%80%A0%E6%9C%89%E5%90%91%E6%97%A0%E7%8E%AF%E5%9B%BE/">构造有向无环图</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/05/abc292/">abc292</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/04/%E6%9C%80%E7%9F%AD%E8%B7%AF-%E8%B6%85%E7%BA%A7%E6%BA%90%E7%82%B9/">最短路-超级源点</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/02/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
