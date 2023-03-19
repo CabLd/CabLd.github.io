@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>01 MST | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Problem - D - Codeforces (Unofficial mirror by Menci) Des 给你一个完全图，边的权值不是1就是0，给出那些权值为1的点，求MST。 Solution 直接正向MST算法，不行，边太多了，我们维护n棵生成树值为0的连通块个数，最后答案为权值为0连通块的个数-1（n个点最小生成树为m - 1条边），问题是怎么维护？对于某个点，假设现在有一堆权值为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="01 MST">
+<meta property="og:url" content="http://example.com/2023/03/19/01-MST/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Problem - D - Codeforces (Unofficial mirror by Menci) Des 给你一个完全图，边的权值不是1就是0，给出那些权值为1的点，求MST。 Solution 直接正向MST算法，不行，边太多了，我们维护n棵生成树值为0的连通块个数，最后答案为权值为0连通块的个数-1（n个点最小生成树为m - 1条边），问题是怎么维护？对于某个点，假设现在有一堆权值为">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-03-19T06:24:10.000Z">
+<meta property="article:modified_time" content="2023-03-19T06:30:05.250Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="图论">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-01-MST" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/19/01-MST/" class="article-date">
+  <time class="dt-published" datetime="2023-03-19T06:24:10.000Z" itemprop="datePublished">2023-03-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      01 MST
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://codeforc.es/contest/1243/problem/D">Problem - D - Codeforces (Unofficial mirror by Menci)</a></p>
+<p><strong>Des</strong></p>
+<p>给你一个完全图，边的权值不是1就是0，给出那些权值为1的点，求MST。</p>
+<p><strong>Solution</strong></p>
+<p>直接正向MST算法，不行，边太多了，我们维护n棵生成树值为0的连通块个数，最后答案为权值为0连通块的个数-1（n个点最小生成树为m - 1条边），问题是怎么维护？对于某个点，假设现在有一堆权值为0连通块，是不是存在一个结论。<strong>如果这点能加入这个连通块，这个点到该块权值为1的边数小于连通块的点数。</strong></p>
+<p><strong>Code</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long </span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> rep(i, a, b) for(int i = a; i &lt;= b; ++i)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span> + <span class="number">10</span>;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; g[N], bk;</span><br><span class="line"><span class="type">int</span> p[N], siz[N];</span><br><span class="line">map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; emp;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">findd</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(x != p[x]) x = p[x] = p[p[x]];</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">change</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> fx = <span class="built_in">findd</span>(x), fy = <span class="built_in">findd</span>(y);</span><br><span class="line">	<span class="keyword">if</span>(fx != fy) &#123;</span><br><span class="line">		p[fy] = fx;</span><br><span class="line">		siz[fx] += siz[fy];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>), cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	<span class="built_in">rep</span>(i, <span class="number">1</span>, n) p[i] = i;</span><br><span class="line">	<span class="built_in">rep</span>(i, <span class="number">1</span>, m) &#123;</span><br><span class="line">		<span class="type">int</span> u, v;</span><br><span class="line">		cin &gt;&gt; u &gt;&gt; v;</span><br><span class="line">		g[u].<span class="built_in">push_back</span>(v);</span><br><span class="line">		g[v].<span class="built_in">push_back</span>(u);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">rep</span>(i, <span class="number">1</span>, n) &#123;</span><br><span class="line">		siz[i] = <span class="number">1</span>;</span><br><span class="line">		emp.<span class="built_in">clear</span>();</span><br><span class="line">		<span class="comment">//统计出每个连通块与i点相连边数</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; g[i].<span class="built_in">size</span>(); ++j) &#123;</span><br><span class="line">			<span class="type">int</span> v = g[i][j];</span><br><span class="line">			<span class="keyword">if</span>(v &gt; i) <span class="keyword">continue</span>;<span class="comment">//这个点还没有维护到</span></span><br><span class="line">			<span class="type">int</span> fv = <span class="built_in">findd</span>(v);</span><br><span class="line">			emp[fv]++;</span><br><span class="line">		&#125; </span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; bk.<span class="built_in">size</span>(); ++j) &#123;</span><br><span class="line">			<span class="type">int</span> fx = <span class="built_in">findd</span>(bk[j]), fy = <span class="built_in">findd</span>(i);</span><br><span class="line">			<span class="keyword">if</span>(fx == fy) <span class="keyword">continue</span>;</span><br><span class="line">			<span class="comment">//如果到块权值为1的边数小于连通块的点数 可以合并</span></span><br><span class="line">			<span class="keyword">if</span>(siz[fx] &gt; emp[fx]) <span class="built_in">change</span>(fx, fy);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="type">int</span> fx = <span class="built_in">findd</span>(i);</span><br><span class="line">		<span class="comment">//如果该点没有进入其他连通块，那么自成一块</span></span><br><span class="line">		<span class="keyword">if</span>(fx == i) bk.<span class="built_in">push_back</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> ok = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">rep</span>(i, <span class="number">1</span>, n) <span class="keyword">if</span>(<span class="built_in">findd</span>(i) == i) ok++;</span><br><span class="line">	cout &lt;&lt; ok - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/19/01-MST/" data-id="clff0qux90000swu9fkljaiti" data-title="01 MST" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag">图论</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/03/09/%E5%80%8D%E5%A2%9E%E6%B3%95%E6%B1%82LCA/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">倍增法求LCA</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Atcoder/" rel="tag">Atcoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag">图论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E8%AE%BA/" rel="tag">杂论</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Atcoder/" style="font-size: 10px;">Atcoder</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 10px;">动态规划</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 20px;">图论</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%9D%82%E8%AE%BA/" style="font-size: 10px;">杂论</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/03/19/01-MST/">01 MST</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/09/%E5%80%8D%E5%A2%9E%E6%B3%95%E6%B1%82LCA/">倍增法求LCA</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/09/%E5%9F%BA%E7%A1%80%E6%A8%A1%E6%9D%BF%E8%AE%B0%E5%BF%86%E6%B8%85%E5%8D%95/">基础模板记忆清单</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/07/%E6%95%B4%E6%95%B0%E6%8B%BC%E6%8E%A5/">整数拼接</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/06/%E5%BC%82%E6%88%96%E6%A0%91/">异或树</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
