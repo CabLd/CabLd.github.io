@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>中国石油大学校赛题解 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="A 双指针 123456789101112131415161718192021void solve() &amp;#123;    string s;    cin &gt;&gt; s;    s &#x3D; &quot; &quot; + s;    string ok &#x3D; &quot;&quot;;    int n &#x3D; s.size() - 1;    rep(i, 1, n) &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中国石油大学校赛题解">
+<meta property="og:url" content="http://example.com/2023/03/25/%E4%B8%AD%E5%9B%BD%E7%9F%B3%E6%B2%B9%E5%A4%A7%E5%AD%A6%E6%A0%A1%E8%B5%9B%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="A 双指针 123456789101112131415161718192021void solve() &amp;#123;    string s;    cin &gt;&gt; s;    s &#x3D; &quot; &quot; + s;    string ok &#x3D; &quot;&quot;;    int n &#x3D; s.size() - 1;    rep(i, 1, n) &amp;#123;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-03-25T12:38:29.000Z">
+<meta property="article:modified_time" content="2023-03-25T12:56:11.868Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="NowCoder">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-中国石油大学校赛题解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/25/%E4%B8%AD%E5%9B%BD%E7%9F%B3%E6%B2%B9%E5%A4%A7%E5%AD%A6%E6%A0%A1%E8%B5%9B%E9%A2%98%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2023-03-25T12:38:29.000Z" itemprop="datePublished">2023-03-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      中国石油大学校赛题解
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>A</strong></p>
+<p>双指针</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    string s;</span><br><span class="line">    cin &gt;&gt; s;</span><br><span class="line">    s = <span class="string">&quot; &quot;</span> + s;</span><br><span class="line">    string ok = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="type">int</span> n = s.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">rep</span>(i, <span class="number">1</span>, n) &#123;</span><br><span class="line">        <span class="keyword">if</span>(s[i] != <span class="string">&#x27;0&#x27;</span>) &#123;</span><br><span class="line">            <span class="type">int</span> cnt = s[i] - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">            <span class="type">int</span> j = i;</span><br><span class="line">            <span class="keyword">while</span>(j + <span class="number">1</span> &lt;= n &amp;&amp; s[j + <span class="number">1</span>] != <span class="string">&#x27;0&#x27;</span>) &#123;</span><br><span class="line">                ++j;</span><br><span class="line">                cnt += (s[j] - <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//debug(cnt);</span></span><br><span class="line">            ok += <span class="built_in">char</span>(<span class="string">&#x27;a&#x27;</span> + cnt - <span class="number">1</span>);</span><br><span class="line">            i = j;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ok &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>B</strong></p>
+<p>惨案现场，被卡精了。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span> &#123;</span><br><span class="line">    <span class="type">int</span> x, tm, w;</span><br><span class="line">&#125;a[<span class="number">100</span>];</span><br><span class="line"><span class="type">int</span> vis[N];</span><br><span class="line"><span class="type">double</span> ok;</span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="type">int</span> id[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="built_in">rep</span>(i, <span class="number">1</span>, n) cin &gt;&gt; a[i].x &gt;&gt; a[i].tm &gt;&gt; a[i].w;</span><br><span class="line">    <span class="built_in">rep</span>(i, <span class="number">1</span>, n) id[i] = i;</span><br><span class="line">    ok = <span class="number">0.0</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="type">int</span> val = m;</span><br><span class="line">        <span class="type">double</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">rep</span>(i, <span class="number">1</span>, n) &#123;</span><br><span class="line">            <span class="type">int</span> j = id[i];</span><br><span class="line">            <span class="keyword">if</span>(a[j].tm &lt;= val) &#123;</span><br><span class="line">                val -= a[j].tm;</span><br><span class="line">                <span class="type">double</span> add = <span class="built_in">max</span>(<span class="number">0.30</span> * a[j].x, <span class="number">1.0</span> * a[j].x * (<span class="number">1000</span> - <span class="number">4</span> * (m - val)) / <span class="number">1000</span> - <span class="number">50.0</span> * a[j].w);</span><br><span class="line">                sum += add;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(sum &gt; ok) ok = sum;</span><br><span class="line">    &#125;<span class="keyword">while</span>(<span class="built_in">next_permutation</span>(id + <span class="number">1</span>, id + <span class="number">1</span> + n));</span><br><span class="line">   <span class="comment">//dfs(1, m, 0.0);</span></span><br><span class="line">    cout &lt;&lt; (<span class="type">int</span>)ok &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>C</strong></p>
+<p>n个数，求出所有子区间的最小公倍数的质因子个数总和。设两个数的lcm为x，则x包含了这两个数字的因子，包含质因子。oN的去处理当然不行，方向定在处理质因子的贡献，很显然，如过ai有质因子z，那么包含ai的子数组的lcm会含有质因子x，如果区间长度为len，那么z的贡献次数为len * (len + 1)  &#x2F; 2，还有一个问题，z会被重复计算贡献。那么怎么去掉重复贡献，假设ai a两个数都有质因子z，他们中间的数，都没有质因子z，那么减掉中间这段区间长度的贡献即可，因为重复贡献了这段区间两次。做法，筛出每个数字每个质因子的位置（质因数分解），然后遍历这些位置，减掉重复贡献。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    unordered_map&lt;<span class="type">int</span>, vector&lt;<span class="type">int</span>&gt; &gt; mp;</span><br><span class="line">    <span class="built_in">rep</span>(i, <span class="number">1</span>, n) &#123;</span><br><span class="line">        <span class="type">int</span> x;</span><br><span class="line">        cin &gt;&gt; x;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">2</span>; j &lt;= x / j; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span>(x % j == <span class="number">0</span>) &#123;</span><br><span class="line">                mp[j].<span class="built_in">push_back</span>(i);</span><br><span class="line">                <span class="keyword">while</span>(x % j == <span class="number">0</span>) x /= j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(x &gt; <span class="number">1</span>) mp[x].<span class="built_in">push_back</span>(i);</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="type">int</span> ok = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> [p, v] : mp) &#123;</span><br><span class="line">        ok += n * (n + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">        <span class="type">int</span> idx = <span class="number">0</span>;</span><br><span class="line">        v.<span class="built_in">push_back</span>(n + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> c : v) &#123;</span><br><span class="line">            <span class="type">int</span> len = c - idx - <span class="number">1</span>;</span><br><span class="line">            ok -= len * (len + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">            idx = c;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ok &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>D</strong></p>
+<p>签到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">void solve() &#123;</span><br><span class="line">    string x;</span><br><span class="line">    cin &gt;&gt; x;</span><br><span class="line">    cout &lt;&lt; &quot;guan zhu &quot; &lt;&lt; x &lt;&lt; &quot; miao, guan zhu &quot; &lt;&lt; x &lt;&lt; &quot; xie xie miao!&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>J</strong></p>
+<p>贝叶斯公式（离散数学。。。</p>
+<p>不选赢的概率：1 &#x2F; n</p>
+<p>选赢的概率：1 &#x2F; n * 0 （你选了对的然后去选不对的）+ (n - 1) &#x2F; n * (1 &#x2F; (n - 2)) （错里面选到对的概率）</p>
+<p>显然2概率大，代码简单（看来又得复习点简单的概率论）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">ss2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="type">int</span> a = n - <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> b = n * (n - <span class="number">2</span>);</span><br><span class="line">    cout &lt;&lt; a / __gcd(a, b) &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; b / __gcd(a, b)  &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/25/%E4%B8%AD%E5%9B%BD%E7%9F%B3%E6%B2%B9%E5%A4%A7%E5%AD%A6%E6%A0%A1%E8%B5%9B%E9%A2%98%E8%A7%A3/" data-id="clfnz6ws90000ssu96vwhaxya" data-title="中国石油大学校赛题解" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NowCoder/" rel="tag">NowCoder</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/03/20/Codeforces-Round-859-Div-4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Codeforces Round 859 (Div. 4)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Atcoder/" rel="tag">Atcoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Codeforces%E9%A2%98%E8%A7%A3/" rel="tag">Codeforces题解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NowCoder/" rel="tag">NowCoder</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag">图论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E8%AE%BA/" rel="tag">杂论</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Atcoder/" style="font-size: 10px;">Atcoder</a> <a href="/tags/Codeforces%E9%A2%98%E8%A7%A3/" style="font-size: 10px;">Codeforces题解</a> <a href="/tags/NowCoder/" style="font-size: 10px;">NowCoder</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 10px;">动态规划</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 20px;">图论</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%9D%82%E8%AE%BA/" style="font-size: 10px;">杂论</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/03/25/%E4%B8%AD%E5%9B%BD%E7%9F%B3%E6%B2%B9%E5%A4%A7%E5%AD%A6%E6%A0%A1%E8%B5%9B%E9%A2%98%E8%A7%A3/">中国石油大学校赛题解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/20/Codeforces-Round-859-Div-4/">Codeforces Round 859 (Div. 4)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/19/01-MST/">01 MST</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/09/%E5%80%8D%E5%A2%9E%E6%B3%95%E6%B1%82LCA/">倍增法求LCA</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/09/%E5%9F%BA%E7%A1%80%E6%A8%A1%E6%9D%BF%E8%AE%B0%E5%BF%86%E6%B8%85%E5%8D%95/">基础模板记忆清单</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
