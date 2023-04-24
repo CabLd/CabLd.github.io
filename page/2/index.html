@@ -71,6 +71,93 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-整数拼接" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/07/%E6%95%B4%E6%95%B0%E6%8B%BC%E6%8E%A5/" class="article-date">
+  <time class="dt-published" datetime="2023-03-07T08:22:57.000Z" itemprop="datePublished">2023-03-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/03/07/%E6%95%B4%E6%95%B0%E6%8B%BC%E6%8E%A5/">整数拼接</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>[传送门]([P8712 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P8712">蓝桥杯 2020 省 B1] 整数拼接 - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)</a>)</p>
+<p><strong>Des</strong></p>
+<p>给你一堆数，让你找出有多少对数拼接在一起，是k的倍数。</p>
+<p><strong>Solution</strong></p>
+<p>数据量很大，不能暴力，看到%这种计数考虑dp，一个数跟另外一个数拼接，将前面的数<em>后一个数的位数^10，我们处理每个数</em>10以后%k后的数即可，前后跑一遍。</p>
+<p><strong>Code</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long </span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> n, k, a[N];</span><br><span class="line"><span class="type">int</span> f[<span class="number">15</span>][N]; <span class="comment">//扩大10^i次方 %k==j的数有多少个</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">cal</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(x) res++, x /= <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> ok;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sol</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">		ok += f[<span class="built_in">cal</span>(a[i])][((k - a[i]) % k + k) % k];</span><br><span class="line">		<span class="type">int</span> len = <span class="number">10</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">10</span>; ++j) &#123;</span><br><span class="line">			f[j][a[i] * len % k]++;</span><br><span class="line">			len = len * <span class="number">10</span> % k;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>), cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) cin &gt;&gt; a[i];</span><br><span class="line">	<span class="built_in">sol</span>();</span><br><span class="line">	<span class="built_in">reverse</span>(a + <span class="number">1</span>, a + <span class="number">1</span> + n);</span><br><span class="line">	<span class="built_in">memset</span>(f, <span class="number">0</span>, <span class="keyword">sizeof</span> f);</span><br><span class="line">	<span class="built_in">sol</span>();</span><br><span class="line">	cout &lt;&lt; ok;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/07/%E6%95%B4%E6%95%B0%E6%8B%BC%E6%8E%A5/" data-id="clexzonou000030u960uo77q7" data-title="整数拼接" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-异或树" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/06/%E5%BC%82%E6%88%96%E6%A0%91/" class="article-date">
+  <time class="dt-published" datetime="2023-03-06T03:55:55.000Z" itemprop="datePublished">2023-03-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/03/06/%E5%BC%82%E6%88%96%E6%A0%91/">异或树</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>异或树模板</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> cnt, s[N * <span class="number">32</span>][<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">change</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> u = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">30</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">		<span class="type">int</span> v = (x &gt;&gt; i) &amp; <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(!s[u][v]) s[u][v] = ++cnt;</span><br><span class="line">		u = s[u][v]; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">query</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> res = <span class="number">0</span>, u = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">30</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">		<span class="type">int</span> v = (x &gt;&gt; i) &amp; <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(s[u][!v]) &#123;</span><br><span class="line">			res |= (<span class="number">1</span> &lt;&lt; i);</span><br><span class="line">			u = s[u][!v];</span><br><span class="line">		&#125;<span class="keyword">else</span> u = s[u][v];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/06/%E5%BC%82%E6%88%96%E6%A0%91/" data-id="clewal8lj00000wu95j6rb19m" data-title="异或树" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-相约桂子山-图论性质" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/03/05/%E7%9B%B8%E7%BA%A6%E6%A1%82%E5%AD%90%E5%B1%B1-%E5%9B%BE%E8%AE%BA%E6%80%A7%E8%B4%A8/" class="article-date">
@@ -350,7 +437,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Atcoder/" style="font-size: 10px;">Atcoder</a> <a href="/tags/Codeforces%E9%A2%98%E8%A7%A3/" style="font-size: 10px;">Codeforces题解</a> <a href="/tags/NowCoder/" style="font-size: 10px;">NowCoder</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 15px;">动态规划</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 20px;">图论</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%9D%82%E8%AE%BA/" style="font-size: 15px;">杂论</a>
+      <a href="/tags/Atcoder/" style="font-size: 10px;">Atcoder</a> <a href="/tags/Codeforces%E9%A2%98%E8%A7%A3/" style="font-size: 10px;">Codeforces题解</a> <a href="/tags/NowCoder/" style="font-size: 10px;">NowCoder</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 13.33px;">动态规划</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 20px;">图论</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/%E6%9D%82%E8%AE%BA/" style="font-size: 13.33px;">杂论</a>
     </div>
   </div>
 
@@ -372,6 +459,14 @@
       <ul>
         
           <li>
+            <a href="/2023/04/24/abc299-G%E7%BA%BF%E6%AE%B5%E6%A0%91%E6%80%9D%E7%BB%B4/">abc299-G线段树思维</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/18/%E5%88%97%E8%BD%A6%E8%B0%83%E5%BA%A6/">列车调度</a>
+          </li>
+        
+          <li>
             <a href="/2023/04/13/P1967-NOIP2013-%E6%8F%90%E9%AB%98%E7%BB%84-%E8%B4%A7%E8%BD%A6%E8%BF%90%E8%BE%93/">P1967 [NOIP2013 提高组] 货车运输</a>
           </li>
         
@@ -381,14 +476,6 @@
         
           <li>
             <a href="/2023/03/26/%E5%9B%BE%E7%89%87%E6%B5%8B%E8%AF%95/">图片测试</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/25/%E4%B8%AD%E5%9B%BD%E7%9F%B3%E6%B2%B9%E5%A4%A7%E5%AD%A6%E6%A0%A1%E8%B5%9B%E9%A2%98%E8%A7%A3/">中国石油大学校赛题解</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/20/Codeforces-Round-859-Div-4/">Codeforces Round 859 (Div. 4)</a>
           </li>
         
       </ul>
