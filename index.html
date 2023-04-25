@@ -71,6 +71,70 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Codeforces-Round-867-Div-3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/25/Codeforces-Round-867-Div-3/" class="article-date">
+  <time class="dt-published" datetime="2023-04-25T02:40:02.000Z" itemprop="datePublished">2023-04-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/25/Codeforces-Round-867-Div-3/">Codeforces Round 867 (Div. 3)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="A"><a href="#A" class="headerlink" title="A"></a>A</h3><p>选择当前节目的花费是i - 1 + a[i]，遍历取最大值即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">2e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> n, t, a[N], b[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; t;</span><br><span class="line">    <span class="built_in">rep</span>(i, <span class="number">1</span>, n) cin &gt;&gt; a[i];</span><br><span class="line">    <span class="built_in">rep</span>(i, <span class="number">1</span>, n) cin &gt;&gt; b[i];</span><br><span class="line">    <span class="type">int</span> mx =<span class="number">-1</span>, id;</span><br><span class="line">    <span class="built_in">rep</span>(i, <span class="number">1</span>, n) &#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i] + (i - <span class="number">1</span>) &lt;= t) &#123;</span><br><span class="line">            <span class="keyword">if</span>(b[i] &gt; mx) mx = b[i], id = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">if</span>(mx == <span class="number">-1</span>) cout &lt;&lt; mx &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    <span class="keyword">else</span> cout &lt;&lt; id &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    <span class="comment">//cout &lt;&lt; mx &lt;&lt; &quot;\n&quot;;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="B"><a href="#B" class="headerlink" title="B"></a>B</h2><p>明显的小贪心，<strong>删除任意数这个操作不要想多了，就是等价于你可以任意选择两个数相乘。</strong></p>
+<p>我们需要选取两个最大值，得到最优解，但是一定是负数最大的两个，或者正数的最大两个，和原来数组相邻的最大值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n, a[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="built_in">rep</span>(i, <span class="number">1</span>, n) cin &gt;&gt; a[i];</span><br><span class="line">    <span class="type">int</span> mx = a[<span class="number">1</span>] * a[<span class="number">2</span>];</span><br><span class="line">    <span class="built_in">rep</span>(i, <span class="number">2</span>, n) &#123;</span><br><span class="line">        mx = <span class="built_in">max</span>(mx, a[i] * a[i - <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">sort</span>(a + <span class="number">1</span>, a + <span class="number">1</span> + n);</span><br><span class="line">    mx = <span class="built_in">max</span>(&#123;mx, a[<span class="number">1</span>] * a[<span class="number">2</span>], a[n - <span class="number">1</span>] * a[n]&#125;);</span><br><span class="line">    cout &lt;&lt; mx &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><p>割补法，但我不会告诉你可以oeis，答案为（n + 1) * （n + 1） + 1</p>
+<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/matrix67/article/details/4779999">(1条消息) 趣题：构造1到n-1的排列使得前缀和模n仍为一个排列_matrix67的博客-CSDN博客</a></p>
+<p>这个题的改编版，区别就是加了一个1，打表找个规律也行。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">1</span>) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;1\n&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n &amp; <span class="number">1</span>) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;-1\n&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> x = n , y = <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; v;</span><br><span class="line">    <span class="built_in">rep</span>(i, <span class="number">1</span>, n / <span class="number">2</span>) &#123;</span><br><span class="line">        cout &lt;&lt; x &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; y &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">        x -= <span class="number">2</span>, y += <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="E"><a href="#E" class="headerlink" title="E"></a><strong>E</strong></h2><p>令字符串为不会有一个对称的字符相等的最小操作次数，每次可以交换两个字母，使得字符串符合该条件。</p>
+<p><strong>这种题先想不可能完成的情况。</strong></p>
+<p>首先奇数字符串不可能，因为中间那个字母，自己等于自己， 特判一下。</p>
+<p>然后偶数字符串一定行吗，想一想如果有一个字符出现次数超过n&#x2F;2，怎么放都会有一个字符超出来，破坏合法。也是不行。</p>
+<p>那么剩下的情况一定可以进行操作。那么如何最小化操作次数，显然一定选择出现对数最多的那个字符。<strong>比如aacbbcaa</strong> :</p>
+<p>肯定先拿a字符去交换，<strong>如果你先进行b和c的处理，变成aaccbbaa，使用一次，还要对a交换两次，总共消耗3次，</strong></p>
+<p>如果把前两个a分别跟里面的b和c交换，两次即可，一次处理完两对，总结一句就是：如果先消化对数较小的字符，那么消化，还要对出现次数最大的次数字符交换，浪费了交换次数。那么优先队列维护最大出现次数即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">2e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    string s;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; s;</span><br><span class="line">    s = <span class="string">&quot; &quot;</span> + s;</span><br><span class="line">    <span class="keyword">if</span>(n &amp; <span class="number">1</span>) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;-1\n&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    map&lt;<span class="type">char</span>, <span class="type">int</span>&gt; mp, cnt;</span><br><span class="line">    <span class="built_in">rep</span>(i, <span class="number">1</span>, n) cnt[s[i]]++;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> c : cnt) &#123;</span><br><span class="line">        <span class="keyword">if</span>(c.second &gt; n / <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="comment">//cout &lt;&lt; c.first &lt;&lt; &quot;\n&quot;;</span></span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;-1\n&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="type">int</span> l = <span class="number">1</span>, r = n;</span><br><span class="line">    <span class="keyword">while</span>(l &lt; r) &#123;</span><br><span class="line">        <span class="keyword">if</span>(s[l] == s[r]) mp[s[l]]++; <span class="comment">//处理每个字符有多少对相同的</span></span><br><span class="line">        l++, r--;</span><br><span class="line">    &#125;</span><br><span class="line">    priority_queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> c : mp) q.<span class="built_in">push</span>(c.second);</span><br><span class="line">    <span class="type">int</span> ok = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(q.<span class="built_in">size</span>()) &#123;</span><br><span class="line">        <span class="type">int</span> u1 = q.<span class="built_in">top</span>();</span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">if</span>(q.<span class="built_in">size</span>() == <span class="number">0</span>) &#123;</span><br><span class="line">            ok += u1;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> u2 = q.<span class="built_in">top</span>();</span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line">        ok++;</span><br><span class="line">        <span class="keyword">if</span>(u1 != <span class="number">1</span>) q.<span class="built_in">push</span>(u1 - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span>(u2 != <span class="number">1</span>) q.<span class="built_in">push</span>(u2 - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ok &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="F（在补）"><a href="#F（在补）" class="headerlink" title="F（在补）"></a>F（在补）</h2><h2 id="G1"><a href="#G1" class="headerlink" title="G1"></a><strong>G1</strong></h2><p>问你一个数组里面你能选多少个三元组出来， 下标顺序不管，然后三个满足，比如x, y, z,  y是x的b倍，z是y的b倍，刚开始还想筛法处理，直接枚举每个ai的约数就行。ai最大才1e6，复杂度为o(n * √ai)，注意处理都是倍数为1的情况。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n, a[N];</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; mp;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="built_in">rep</span>(i, <span class="number">1</span>, n) cin &gt;&gt; a[i], mp[a[i]]++;</span><br><span class="line">    <span class="type">int</span> ok = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> c : mp) &#123;</span><br><span class="line">        <span class="type">int</span> x = c.second;</span><br><span class="line">        <span class="keyword">if</span>(x &gt;= <span class="number">3</span>) &#123;</span><br><span class="line">            ok += x * (x - <span class="number">1</span>) * (x - <span class="number">2</span>) / <span class="number">6</span> * <span class="number">6</span>;  <span class="comment">//处理都是同一个数的情况    </span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">2</span>; j &lt;= a[i] / j; ++j) &#123;</span><br><span class="line">            <span class="comment">//cout &lt;&lt; j &lt;&lt; &quot; dd\n&quot;;</span></span><br><span class="line">            <span class="keyword">if</span>(a[i] % j == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">//cout &lt;&lt; a[i] &lt;&lt; &quot; &quot; &lt;&lt; j &lt;&lt; &quot;\n&quot;;</span></span><br><span class="line">                <span class="keyword">if</span>((a[i] / j) % j == <span class="number">0</span> &amp;&amp; mp[a[i] / j] &amp;&amp; mp[a[i] / (j * j)]) &#123;</span><br><span class="line">                    ok +=  mp[a[i] / j] * mp[a[i] / (j * j)];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ok &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="G2（在补）"><a href="#G2（在补）" class="headerlink" title="G2（在补）"></a>G2（在补）</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/25/Codeforces-Round-867-Div-3/" data-id="clgvowp6y0000agu9btux8pfd" data-title="Codeforces Round 867 (Div. 3)" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Codeforces%E9%A2%98%E8%A7%A3/" rel="tag">Codeforces题解</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-abc299-G线段树思维" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/04/24/abc299-G%E7%BA%BF%E6%AE%B5%E6%A0%91%E6%80%9D%E7%BB%B4/" class="article-date">
@@ -539,91 +603,6 @@
 
 
   
-    <article id="post-基础模板记忆清单" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/03/09/%E5%9F%BA%E7%A1%80%E6%A8%A1%E6%9D%BF%E8%AE%B0%E5%BF%86%E6%B8%85%E5%8D%95/" class="article-date">
-  <time class="dt-published" datetime="2023-03-09T00:53:43.000Z" itemprop="datePublished">2023-03-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/03/09/%E5%9F%BA%E7%A1%80%E6%A8%A1%E6%9D%BF%E8%AE%B0%E5%BF%86%E6%B8%85%E5%8D%95/">基础模板记忆清单</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>基础算法</p>
-<p>​	二分 </p>
-<p>​	双指针</p>
-<p>​	前缀和（一维+二维）</p>
-<p>​	<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P8783">蓝桥杯 2022 省 B] 统计子矩阵 - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)</a></p>
-<p>​	差分（一维+二维）</p>
-<p>​	离散化</p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1908">	P1908 逆序对 - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)</a></p>
-<p>​	尺取法</p>
-<p>数论</p>
-<p>​	快速幂 逆元</p>
-<p>​	线性筛</p>
-<p>​	约数筛</p>
-<p>​	质因数分解</p>
-<p>​	组合数预处理</p>
-<p>动态规划</p>
-<p>​	01背包</p>
-<p>​		[01求具体方案](<a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/12/">12. 背包问题求具体方案 - AcWing题库</a>)</p>
-<p>​		刚好装满最大价值</p>
-<p>​		[最大价值方案数](<a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/11/">11. 背包问题求方案数 - AcWing题库</a>)</p>
-<p>​		</p>
-<p>​		</p>
-<p>​	完全背包</p>
-<p>​		[刚好装满方案数]([P1474 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1474">USACO2.3]Money System &#x2F; [USACO07OCT]Cow Cash G - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)</a>)</p>
-<p>​	多重背包</p>
-<p>​		<a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/4/">4. 多重背包问题 I - AcWing题库</a></p>
-<p>​	最长上升子序列（lg做法）</p>
-<p>​	最长公共子串、子序列</p>
-<p>​	区间dp</p>
-<p>​	计数dp</p>
-<p>图论</p>
-<p>​	链式前向星</p>
-<p>​	最短路（floyd + dijstra）</p>
-<p>​	拓扑排序</p>
-<p>​	LCA</p>
-<p>​	<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3379">P3379 【模板】最近公共祖先（LCA） - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)</a></p>
-<p>字符串</p>
-<p>​	hash</p>
-<p>​	kmp</p>
-<p>数据结构</p>
-<p>​	单调栈</p>
-<p>​	树状数组</p>
-<p>​	线段树（基础的区间加乘标记）</p>
-<p>​	二叉树遍历恢复</p>
-<p>​	</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/03/09/%E5%9F%BA%E7%A1%80%E6%A8%A1%E6%9D%BF%E8%AE%B0%E5%BF%86%E6%B8%85%E5%8D%95/" data-id="clf0eq7n50000c8u9h4mn9evy" data-title="基础模板记忆清单" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%82%E8%AE%BA/" rel="tag">杂论</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -652,7 +631,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Atcoder/" style="font-size: 10px;">Atcoder</a> <a href="/tags/Codeforces%E9%A2%98%E8%A7%A3/" style="font-size: 10px;">Codeforces题解</a> <a href="/tags/NowCoder/" style="font-size: 10px;">NowCoder</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 13.33px;">动态规划</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 20px;">图论</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/%E6%9D%82%E8%AE%BA/" style="font-size: 13.33px;">杂论</a>
+      <a href="/tags/Atcoder/" style="font-size: 10px;">Atcoder</a> <a href="/tags/Codeforces%E9%A2%98%E8%A7%A3/" style="font-size: 13.33px;">Codeforces题解</a> <a href="/tags/NowCoder/" style="font-size: 10px;">NowCoder</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 13.33px;">动态规划</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 20px;">图论</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/%E6%9D%82%E8%AE%BA/" style="font-size: 13.33px;">杂论</a>
     </div>
   </div>
 
@@ -674,6 +653,10 @@
       <ul>
         
           <li>
+            <a href="/2023/04/25/Codeforces-Round-867-Div-3/">Codeforces Round 867 (Div. 3)</a>
+          </li>
+        
+          <li>
             <a href="/2023/04/24/abc299-G%E7%BA%BF%E6%AE%B5%E6%A0%91%E6%80%9D%E7%BB%B4/">abc299-G线段树思维</a>
           </li>
         
@@ -687,10 +670,6 @@
         
           <li>
             <a href="/2023/04/12/%E6%95%B0%E4%BD%8Ddp%E7%9A%84%E7%90%86%E8%A7%A3E-Salazar-Slytherin-s-Locket/">数位dp的理解E. Salazar Slytherin&#39;s Locket</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/26/%E5%9B%BE%E7%89%87%E6%B5%8B%E8%AF%95/">图片测试</a>
           </li>
         
       </ul>
